@@ -85,6 +85,8 @@ public:
   {
   }
 
+  ~OS32C() {}
+
   static const double ANGLE_MIN;
   static const double ANGLE_MAX;
   static const double ANGLE_INC;
