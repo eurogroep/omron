@@ -135,6 +135,7 @@ int main(int argc, char *argv[])
     {
       ROS_ERROR("Invalid arguments in sensor configuration: %s. Reconnecting in %.2f seconds ...", ex.what(),
                 reconnect_timeout);
+      os32c.close();
       ros::Duration(reconnect_timeout).sleep();
       continue;
     }
@@ -186,6 +187,8 @@ int main(int argc, char *argv[])
       {
         ROS_ERROR("No scan received for %.2f seconds, reconnecting ...", reconnect_timeout);
         laserscan_msg.header.stamp = ros::Time();
+        os32c.closeActiveConnection();
+        os32c.close();
         break;
       }
 
